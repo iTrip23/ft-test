@@ -506,7 +506,7 @@ const Header = () => {
 								<a className="o-header__drawer-menu-link o-header__drawer-menu-link--unselected o-header__drawer-menu-link--secondary" href="https://markets.ft.com/data/portfolio/dashboard" data-trackable="Portfolio" tabIndex="-1">Portfolio</a>
 							</li>
 							<li className="o-header__drawer-menu-item o-header__drawer-menu-item">
-								<a className="o-header__drawer-menu-link o-header__drawer-menu-link--unselected o-header__drawer-menu-link--secondary" href="https://www.ft.com/todaysnewspaper" data-trackable="Today's Newspaper (ePaper)" tabIndex="-1">Today's Newspaper (ePaper)</a>
+								<a className="o-header__drawer-menu-link o-header__drawer-menu-link--unselected o-header__drawer-menu-link--secondary" href="https://www.ft.com/todaysnewspaper" data-trackable="Today's Newspaper (ePaper)" tabIndex="-1">Today&apos;s Newspaper (ePaper)</a>
 							</li>
 							<li className="o-header__drawer-menu-item o-header__drawer-menu-item">
 								<a className="o-header__drawer-menu-link o-header__drawer-menu-link--unselected o-header__drawer-menu-link--secondary" href="https://www.ft.com/crossword" data-trackable="Crossword" tabIndex="-1">Crossword</a>
