@@ -8,8 +8,7 @@ const QueryContextProvider = (props) => {
   const [curations, setCurations] = useState([])
   const [APIresult, storeAPIresult] = useState([])
   const [searchByTime, setSearchByTime] = useState(null)
-  const [filterTime, setFilterTime] = useState(null)
-  const [hide, setHide] = useState(true)
+  const [filterTime, setFilterTime] = useState([])
 
   const allCurations = ["ARTICLES", "BLOGS", "PODCASTS", "VIDEOS"]
 
@@ -30,12 +29,12 @@ const QueryContextProvider = (props) => {
   const addCuration = (curParam) => {
     if (!curations.includes(curParam)) {
       setCurations([...curations, curParam])
-      setHide(false)
     }
   }
   const removeCuration = (cureParam) => {
     setCurations(curations.filter(cure => cure !== cureParam))
   }
+
   return (
     <QueryContext.Provider value={{
       allCurations,
@@ -52,8 +51,6 @@ const QueryContextProvider = (props) => {
       getQueryString,
       filterTime,
       setFilterTime,
-      hide,
-      setHide
     }}>
       {props.children}
     </QueryContext.Provider>

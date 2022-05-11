@@ -1,17 +1,17 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { QueryContext } from "../../../pages/_app"
 import style from '../../../styles/Home.module.css'
 
 export const SearchRefinedBy = () => {
-	const { curations, filterTime, removeCuration, setFilterTime, hide } = useContext(QueryContext);
-	const filtersArr = [filterTime , ...curations]
-	
+	const { curations, filterTime, removeCuration, setFilterTime,  } = useContext(QueryContext);
+	const filtersArr = [...filterTime, ...curations]
+
 	const removeFilter = (filterParam) => {
-		filterParam && filterParam.includes('Last') ? setFilterTime(null) : removeCuration(filterParam)
+		filterParam && filterParam.includes('Last') ? setFilterTime([]) : removeCuration(filterParam)
 	}
 
 	return (
-		<div className={hide && style.displayNone}>
+
 			<div className={style.rowCenter}>
 				{filtersArr ? filtersArr.map((filter, index) => {
 					return (
@@ -22,7 +22,6 @@ export const SearchRefinedBy = () => {
 					)
 				}) : null}
 			</div >
-		</div>
 	)
 }
 
