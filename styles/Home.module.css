@@ -8,7 +8,16 @@
 .rowCenter {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 60vw;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.searchList {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -16,12 +25,20 @@
   margin: 1rem;
 }
 
-.refineSearchByContainer{
+.refineSearch {
+  width: 60vw;
+}
+
+.refineSearchByContainer {
   width: 70vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.displayNone {
+  display: none;
 }
 
 .refineSearchBy{
@@ -32,11 +49,7 @@
 }
 
 .curateBy {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 1rem;
-  /* width: 50vw; */
+  margin: 0.5rem;
   cursor: pointer;
 }
 .curateContainer {
@@ -62,6 +75,12 @@
   .curateBy {
       width: 100vw;
       padding: 1rem;
+  }
+  .refineSearch {
+      width: 80vw;
+    }
+  .rowCenter {
+    width: 80vw
   }
 }
 

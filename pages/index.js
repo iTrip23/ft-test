@@ -9,7 +9,7 @@ import RefineSearch from '../Components/Main/SearchBy/RefineSearch'
 import SearchRefinedBy from '../Components/Main/SearchBy/SearchRefinedBy'
 
 export default function Home() {
-  const { APIresult, storeAPIresult, curations } = useContext(QueryContext);
+  const { APIresult, storeAPIresult } = useContext(QueryContext);
 
   const fetchInitialData = async () => {
     const searchBody = {
@@ -39,23 +39,24 @@ export default function Home() {
   return (
     <>
       <Header />
-      {curations && curations.map((cur, id) => <h1 key={id}>{cur}</h1>)}
       <SearchRefinedBy />
       <RefineSearch />
       <div className={`${style.searchList} o-teaser-collection o-teaser-collection--stream`}>
-        {APIresult && APIresult.map((article, index) => {
-          return (
-            cardWithImage({
-              id: index,
-              title: article.title.title,
-              imgURL: article.images[0].url,
-              subHeading: article.editorial.subheading,
-              summary: article.summary.excerpt,
-              timeStamp: article.lifecycle.lastPublishDateTime
-            })
-          )
-        })
-        }
+        <div className="demo-container">
+          {APIresult && APIresult.map((article, index) => {
+            return (
+              cardWithImage({
+                id: index,
+                title: article.title.title,
+                imgURL: article.images[0].url,
+                subHeading: article.editorial.subheading,
+                summary: article.summary.excerpt,
+                timeStamp: article.lifecycle.lastPublishDateTime
+              })
+            )
+          })
+          }
+        </div>
       </div>
       <Footer />
     </>

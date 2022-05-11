@@ -5,38 +5,44 @@ export const QueryContext = createContext();
 
 const QueryContextProvider = (props) => {
   const [searchBarValue, setSearchBarValue] = useState('')
-  const [curation, setCuration] = useState(null)
+  const [curations, setCurations] = useState([])
   const [APIresult, storeAPIresult] = useState([])
   const [searchByTime, setSearchByTime] = useState(null)
-  const [filterTime, setFilterTime] = useState([])
+  const [filterTime, setFilterTime] = useState(null)
+  const [hide, setHide] = useState(true)
 
   const allCurations = ["ARTICLES", "BLOGS", "PODCASTS", "VIDEOS"]
 
   const getCurations = () => {
-    if (!curations) {
+    if (curations.length === 0) {
       return allCurations
     } else {
-      return [curation]
+      return curations
     }
   }
+
   const getQueryString = () => {
     return `${searchBarValue} ${searchByTime && searchByTime}`
   }
-  // const storeCuration = (stringCuration) => {
-  //   if (!curations.includes(stringCuration)) {
-  //     setCurations([...curations, stringCuration])
-  //   }
-  // }
   const addLastPublishTime = (timeParam) => {
     setSearchByTime(timeParam)
   }
-  // const removeCuration = (stringCuration) => {
-  //   setCurations(curations.filter(curate => curate !== stringCuration))
-  // }
+  const addCuration = (curParam) => {
+    if (!curations.includes(curParam)) {
+      setCurations([...curations, curParam])
+      setHide(false)
+    }
+  }
+  const removeCuration = (cureParam) => {
+    setCurations(curations.filter(cure => cure !== cureParam))
+  }
   return (
     <QueryContext.Provider value={{
       allCurations,
-      setCuration,
+      setCurations,
+      addCuration,
+      removeCuration,
+      curations,
       addLastPublishTime,
       setSearchBarValue,
       searchBarValue,
@@ -45,7 +51,9 @@ const QueryContextProvider = (props) => {
       getCurations,
       getQueryString,
       filterTime,
-      setFilterTime
+      setFilterTime,
+      hide,
+      setHide
     }}>
       {props.children}
     </QueryContext.Provider>

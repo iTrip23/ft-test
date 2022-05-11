@@ -4,15 +4,17 @@ import { useContext } from 'react'
 import moment from 'moment'
 
 export const ByDate = () => {
-	const { addLastPublishTime, setFilterTime } = useContext(QueryContext)
+	const { addLastPublishTime, setFilterTime, setHide } = useContext(QueryContext)
 	const daysArr = [7, 30, 365];
 	const handleTime = (dayParam) => {
 		const timeFromNow = moment().subtract(dayParam, 'days').format('YYYY-MM-DD') + "T00:00:00Z"
-		addLastPublishTime(` AND lastPublishDateTime:>${timeFromNow}`)
+		addLastPublishTime(`AND lastPublishDateTime:>${timeFromNow}`)
+		setHide(false)
 		setFilterTime(`${dayParam <= 30 ? `Last ${dayParam} days` : "Last year"}`)
 	}
 	return (
 		<div className={style.columnCenter}>
+			<h1>Date</h1>
 			{daysArr.map((days, index) => {
 				return (
 					<div
