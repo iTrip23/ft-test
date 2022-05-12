@@ -29,6 +29,3 @@ export const SearchRefinedBy = () => {
 }
 
 export default SearchRefinedBy
-
-
-	// < span class="demo-label" >cross</span >

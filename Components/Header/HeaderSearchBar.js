@@ -1,7 +1,5 @@
 import { QueryContext } from '../../pages/_app'
 import React, { useContext } from 'react'
-import { searchFunc } from '../../functions/searchFunc'
-
 
 export const HeaderSearchBar = () => {
 	const { setSearchBarValue, storeAPIresult, getQueryString, getCurations } = useContext(QueryContext)
@@ -23,8 +21,15 @@ export const HeaderSearchBar = () => {
 				"aspects": ["title", "lifecycle", "location", "images", "summary", "editorial"]
 			}
 		}
-		const apiResponse = await searchFunc(searchBody)
-		storeAPIresult(apiResponse)
+		const apiResponse = await fetch('/api/ftApiSearch', {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(searchBody)
+		})
+		const response = await apiResponse.json()
+		storeAPIresult(response)
 	}
 
 

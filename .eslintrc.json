@@ -3,5 +3,9 @@
     "eslint:recommended",
     "next",
     "prettier"
-  ]
+  ],
+  "rules": {
+    // Other rules
+    "@next/next/no-img-element": "off"
+  }
 }

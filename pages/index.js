@@ -1,41 +1,47 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import Header from '../Components/Header/Header'
 import Footer from '../Components/Footer/Footer'
-import searchFunc from '../functions/searchFunc'
 import { QueryContext } from './_app'
 import cardWithImage from '../Components/Card/CardStory'
 import style from '../styles/Home.module.css'
 import RefineSearch from '../Components/Main/SearchBy/RefineSearch'
 import SearchRefinedBy from '../Components/Main/SearchBy/SearchRefinedBy'
 
-
-export default function Home() {
-  const { APIresult, storeAPIresult } = useContext(QueryContext);
-
-  const fetchInitialData = async () => {
-    const searchBody = {
-      "queryString": "",
-      "queryContext": {
-        "curations": []
-      },
-      "resultContext": {
-        "aspects": ["title", "lifecycle", "location", "summary", "editorial", "images"],
-        "sortOrder": "ASC",
-        "sortField": "lastPublishDateTime",
-        "maxResults": 100
-      }
-    }
-    try {
-      const apiResponse = await searchFunc(searchBody)
-      storeAPIresult(apiResponse)
-    } catch (error) {
-      console.error('There was a problem with that request', error)
+export async function getServerSideProps() {
+  const apiKey = process.env.API_KEY
+  const searchBody = {
+    "queryString": "",
+    "queryContext": {
+      "curations": []
+    },
+    "resultContext": {
+      "aspects": ["title", "lifecycle", "location", "summary", "editorial", "images"],
+      "sortOrder": "ASC",
+      "sortField": "lastPublishDateTime",
+      "maxResults": 100
     }
   }
+  const response = await fetch('https://api.ft.com/content/search/v1?', {
+    method: "POST",
+    headers: {
+      "X-Api-Key": apiKey,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(searchBody)
+  })
+  const { results: [{ results }] } = await response.json()
+  const articlesWithImages = results.filter(res => res.images.length !== 0)
+  return {
+    props: {
+      response: articlesWithImages
+    }
+  }
+}
 
-  useEffect(() => {
-    fetchInitialData()
-  }, [])
+
+export default function Home({ response }) {
+  const { APIresult, storeAPIresult } = useContext(QueryContext);
+  storeAPIresult(response)
 
   return (
     <>

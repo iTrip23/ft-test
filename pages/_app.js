@@ -6,8 +6,8 @@ export const QueryContext = createContext();
 const QueryContextProvider = (props) => {
   const [searchBarValue, setSearchBarValue] = useState('')
   const [curations, setCurations] = useState([])
-  const [APIresult, storeAPIresult] = useState([])
-  const [searchByTime, setSearchByTime] = useState(null)
+  const [APIresult, storeAPIresult] = useState(null)
+  const [searchByTime, setSearchByTime] = useState('')
   const [filterTime, setFilterTime] = useState([])
 
   const allCurations = ["ARTICLES", "BLOGS", "PODCASTS", "VIDEOS"]
