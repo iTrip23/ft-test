@@ -40,8 +40,8 @@ export async function getServerSideProps() {
 
 export default function Home({ response }) {
   const alternativeImage = "https://www.ft.com/__origami/service/image/v2/images/raw/ftlogo-v1%3Abrand-ft-logo-square-coloured?source=update-logos&amp;format=svg"
-  const { APIresult, storeAPIresult } = useContext(QueryContext);
-  storeAPIresult(response)
+  const { APIresult, initialResponse, setInitialResponse } = useContext(QueryContext);
+  setInitialResponse(response)
   return (
     <>
       <Header />
@@ -51,7 +51,18 @@ export default function Home({ response }) {
       </div>
       <div className={`${style.searchList} o-teaser-collection o-teaser-collection--stream`}>
         <div className="demo-container">
-          {APIresult && APIresult.map((article, index) => {
+          {APIresult ? APIresult.map((article, index) => {
+            return (
+              cardWithImage({
+                id: index,
+                title: article.title.title,
+                imgURL: article.images[0]?.url || alternativeImage,
+                subHeading: article.editorial.subheading,
+                summary: article.summary.excerpt,
+                timeStamp: article.lifecycle.lastPublishDateTime
+              })
+            )
+          }) : initialResponse.map((article, index) => {
             return (
               cardWithImage({
                 id: index,

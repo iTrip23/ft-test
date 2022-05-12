@@ -4,6 +4,7 @@ import { createContext, useState } from 'react'
 export const QueryContext = createContext();
 
 const QueryContextProvider = (props) => {
+  const [initialResponse, setInitialResponse] = useState([])
   const [searchBarValue, setSearchBarValue] = useState('')
   const [curations, setCurations] = useState([])
   const [APIresult, storeAPIresult] = useState(null)
@@ -51,6 +52,8 @@ const QueryContextProvider = (props) => {
       getQueryString,
       filterTime,
       setFilterTime,
+      initialResponse,
+      setInitialResponse
     }}>
       {props.children}
     </QueryContext.Provider>
