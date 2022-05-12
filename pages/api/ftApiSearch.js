@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default async function handler({ body }, res) {
-  console.log('This is the request body', body)
 
   const response = await fetch('https://api.ft.com/content/search/v1?', {
     method: "POST",
@@ -11,7 +10,12 @@ export default async function handler({ body }, res) {
     },
     body: JSON.stringify(body)
   })
-  const { results: [{ results }] } = await response.json()
-  const resultsWithImages = results.filter(res => res.images.length !== 0)
-  res.status(200).json(resultsWithImages)
+
+  const { results: [results] } = await response.json()
+  if (results) {
+    res.status(200).json(results)
+  } else {
+    res.status(400).json('nothing found')
+  }
+
 }

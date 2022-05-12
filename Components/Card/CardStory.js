@@ -3,7 +3,7 @@ import style from '../../styles/Home.module.css'
 
 
 const CardWithImage = ({ title, imgURL, subHeading, summary, timeStamp, id }) => {
-
+	
 	return (
 		<div className={`${style.resultItem} o-teaser o-teaser--small o-teaser--has-image`} data-o-component="o-teaser" key={id}>
 			<div className="o-teaser__content">

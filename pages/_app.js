@@ -10,7 +10,7 @@ const QueryContextProvider = (props) => {
   const [searchByTime, setSearchByTime] = useState('')
   const [filterTime, setFilterTime] = useState([])
 
-  const allCurations = ["ARTICLES", "BLOGS", "PODCASTS", "VIDEOS"]
+  const allCurations = ["ARTICLES"]
 
   const getCurations = () => {
     if (curations.length === 0) {
@@ -21,7 +21,7 @@ const QueryContextProvider = (props) => {
   }
 
   const getQueryString = () => {
-    return `${searchBarValue} ${searchByTime && searchByTime}`
+    return `${searchBarValue} ${searchByTime}`
   }
   const addLastPublishTime = (timeParam) => {
     setSearchByTime(timeParam)

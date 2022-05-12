@@ -30,19 +30,18 @@ export async function getServerSideProps() {
     body: JSON.stringify(searchBody)
   })
   const { results: [{ results }] } = await response.json()
-  const articlesWithImages = results.filter(res => res.images.length !== 0)
   return {
     props: {
-      response: articlesWithImages
+      response: results
     }
   }
 }
 
 
 export default function Home({ response }) {
+  const alternativeImage = "https://www.ft.com/__origami/service/image/v2/images/raw/ftlogo-v1%3Abrand-ft-logo-square-coloured?source=update-logos&amp;format=svg"
   const { APIresult, storeAPIresult } = useContext(QueryContext);
   storeAPIresult(response)
-
   return (
     <>
       <Header />
@@ -57,7 +56,7 @@ export default function Home({ response }) {
               cardWithImage({
                 id: index,
                 title: article.title.title,
-                imgURL: article.images[0].url,
+                imgURL: article.images[0]?.url || alternativeImage,
                 subHeading: article.editorial.subheading,
                 summary: article.summary.excerpt,
                 timeStamp: article.lifecycle.lastPublishDateTime

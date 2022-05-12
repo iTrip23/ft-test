@@ -29,7 +29,8 @@ export const HeaderSearchBar = () => {
 			body: JSON.stringify(searchBody)
 		})
 		const response = await apiResponse.json()
-		storeAPIresult(response)
+		const { results } = JSON.parse(JSON.stringify(response))
+		storeAPIresult(results)
 	}
 
 
