@@ -5,7 +5,7 @@ import style from '../../styles/Home.module.css'
 const CardWithImage = ({ title, imgURL, subHeading, summary, timeStamp, id }) => {
 
 	return (
-		<div className={`${style.searchListItem} o-teaser o-teaser--small o-teaser--has-image`} data-o-component="o-teaser" key={id}>
+		<div className={`${style.resultItem} o-teaser o-teaser--small o-teaser--has-image`} data-o-component="o-teaser" key={id}>
 			<div className="o-teaser__content">
 				<div className="o-teaser__meta">
 					<a href="#" className="o-teaser__tag">{subHeading}</a>

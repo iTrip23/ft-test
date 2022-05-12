@@ -3,7 +3,7 @@ import { QueryContext } from "../../../pages/_app"
 import style from '../../../styles/Home.module.css'
 
 export const SearchRefinedBy = () => {
-	const { curations, filterTime, removeCuration, setFilterTime,  } = useContext(QueryContext);
+	const { curations, filterTime, removeCuration, setFilterTime, } = useContext(QueryContext);
 	const filtersArr = [...filterTime, ...curations]
 
 	const removeFilter = (filterParam) => {
@@ -12,17 +12,23 @@ export const SearchRefinedBy = () => {
 
 	return (
 
-			<div className={style.rowCenter}>
-				{filtersArr ? filtersArr.map((filter, index) => {
-					return (
-						<button className="o-buttons o-buttons--primary"
+		<div className={style.filterByTypes}>
+			{filtersArr ? filtersArr.map((filter, index) => {
+				return (
+					<div key={index} className={style.searchIcon}>
+						<span className={`${style.icon} o-icons-icon o-icons-icon--cross demo-icon`}></span>
+						<button className={`${style.searchType} o-buttons o-buttons--primary`}
 							onClick={() => removeFilter(filter)}
 							key={index}
 						>{filter}</button>
-					)
-				}) : null}
-			</div >
+					</div>
+				)
+			}) : null}
+		</div >
 	)
 }
 
 export default SearchRefinedBy
+
+
+	// < span class="demo-label" >cross</span >

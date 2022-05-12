@@ -7,7 +7,7 @@ export const RefineSearch = () => {
 	return (
 		<div className={`${style.refineSearch}`}>
 			<h2 className="o-teaser-collection__heading o-teaser-collection">Refine your search</h2>
-			<div className={style.rowCenter}>
+			<div className={style.searchByTypes}>
 				<TypeOfArticle />
 				<ByDate />
 			</div>

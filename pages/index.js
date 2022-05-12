@@ -8,6 +8,7 @@ import style from '../styles/Home.module.css'
 import RefineSearch from '../Components/Main/SearchBy/RefineSearch'
 import SearchRefinedBy from '../Components/Main/SearchBy/SearchRefinedBy'
 
+
 export default function Home() {
   const { APIresult, storeAPIresult } = useContext(QueryContext);
 
@@ -39,8 +40,10 @@ export default function Home() {
   return (
     <>
       <Header />
-      <SearchRefinedBy />
-      <RefineSearch />
+      <div className={style.searchContainer}>
+        <SearchRefinedBy />
+        <RefineSearch />
+      </div>
       <div className={`${style.searchList} o-teaser-collection o-teaser-collection--stream`}>
         <div className="demo-container">
           {APIresult && APIresult.map((article, index) => {

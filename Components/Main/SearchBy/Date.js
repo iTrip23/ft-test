@@ -12,13 +12,13 @@ export const ByDate = () => {
 		setFilterTime([`${dayParam <= 30 ? `Last ${dayParam} days` : "Last year"}`])
 	}
 	return (
-		<div className={style.columnCenter}>
-			<h1>Date</h1>
+		<div className={style.articleTypeColumn}>
+			<h2 className="o-teaser-collection">Date</h2>
 			{daysArr.map((days, index) => {
 				return (
 					<div
 						onClick={() => handleTime(days)}
-						className={`${style.curateBy} o-labels o-labels--content-premium`}
+						className={`${style.searchType} o-labels o-labels--content-premium`}
 						key={index}>
 						{`${days <= 30 ? `Last ${days} days` : "Last year"}`}
 					</div>
