@@ -27,6 +27,5 @@ This is my ft test challenge repo
 $ git clone https://github.com/iTrip23/ft-test.git
 $ cd ft-test
 $ yarn install
-$ npm install
 $ yarn dev
 ```
